@@ -32,6 +32,10 @@ spec:
         {{- with .Values.ssh.extraVolumes }}
         {{- . | toYaml | nindent 8 }}
         {{- end }}
+      {{- with .Values.ssh.initContainers }}
+      initContainers:
+        {{- . | toYaml | nindent 8 }}
+      {{- end }}
       containers:
         - name: server
           image: "{{ .Values.ssh.image.repository }}:{{ .Values.ssh.image.tag | default .Chart.AppVersion }}"
